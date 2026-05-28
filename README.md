@@ -19,7 +19,7 @@ PPO autonomous response, and IEC 61511/62443-compliant safety gate.
 
 ## Installation
 \`\`\`bash
-git clone https://github.com/[USERNAME]/GRAD-RL
+git clone [https://github.com/[USERNAME]/GRAD-RL](https://github.com/veyselalevcan/GRAD-RL-Autonomous-Cyber-Physical-Defense-for-ICS)
 cd GRAD-RL
 pip install -r requirements.txt
 \`\`\`
