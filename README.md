@@ -1,7 +1,7 @@
 # GRAD-RL: Autonomous Cyber-Physical Defense for ICS
 
 [![Paper](https://img.shields.io/badge/IEEE_Access-DOI-blue)]([PAPER_DOI])
-[![Dataset](https://img.shields.io/badge/Dataset-Zenodo-green)]([ZENODO_DOI])
+[![Dataset](https://doi.org/10.5281/zenodo.20433521)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 ## Overview
@@ -19,13 +19,13 @@ PPO autonomous response, and IEC 61511/62443-compliant safety gate.
 
 ## Installation
 \`\`\`bash
-git clone [https://github.com/veyselalevcan/GRAD-RL-Autonomous-Cyber-Physical-Defense-for-ICS]
+git clone https://github.com/veyselalevcan/GRAD-RL-Autonomous-Cyber-Physical-Defense-for-ICS
 cd GRAD-RL
 pip install -r requirements.txt
 \`\`\`
 
 ## Dataset
-Available at Zenodo: [DOI_LINK]
+Available at Zenodo: https://doi.org/10.5281/zenodo.20433521
 
 ## Citation
 [BibTeX after acceptance]
