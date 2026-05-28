@@ -1,7 +1,7 @@
 # GRAD-RL: Autonomous Cyber-Physical Defense for ICS
 
 [![Paper](https://img.shields.io/badge/IEEE_Access-DOI-blue)]([PAPER_DOI])
-[![Dataset](https://doi.org/10.5281/zenodo.20433521)] (10.5281/zenodo.20433521)
+[![Dataset](https://img.shields.io/badge/Dataset-Zenodo-green)](https://doi.org/10.5281/zenodo.20433521)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
 ## Overview
