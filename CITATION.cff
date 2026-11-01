@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use this software or the GRFICSv3 dataset, please cite it as below."
+title: "GRAD-RL: Autonomous Cyber-Physical Defense for Industrial Control Systems"
+authors:
+  - family-names: Alevcan
+    given-names: Veysel
+  - family-names: Ali
+    given-names: Mohammad Furqan
+  - family-names: Tsado
+    given-names: Yakubu
+  - family-names: Coelho
+    given-names: Nuno Mateus
+  - family-names: Ntantogian
+    given-names: Christoforos
+  - family-names: Adebisi
+    given-names: Bamidele
+  - family-names: Campos
+    given-names: Luís Miguel
+license: MIT
+repository-code: "https://github.com/veyselalevcan/GRAD-RL-Autonomous-Cyber-Physical-Defense-for-ICS"
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.20433521
+    description: "GRFICSv3 MITRE-annotated dataset, live telemetry and XAI logs (Zenodo)"
+keywords:
+  - industrial control systems
+  - anomaly detection
+  - MITRE ATT&CK for ICS
+  - reinforcement learning
+  - IEC 62443

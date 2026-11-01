@@ -1,0 +1,5 @@
+{
+  "threshold": 0.010224364150637912,
+  "dataset": "SWaT",
+  "method": "percentile_99"
+}

@@ -1,0 +1,5 @@
+{
+  "threshold": 0.0027309285942465067,
+  "dataset": "grfics_live",
+  "method": "percentile_99"
+}

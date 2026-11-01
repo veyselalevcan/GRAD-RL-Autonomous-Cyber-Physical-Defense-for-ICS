@@ -38,16 +38,19 @@ from stable_baselines3.common.callbacks import (
 )
 from stable_baselines3.common.monitor import Monitor
 
-from grfics_env import GrficsDefenseEnv, OBS_IDX, PRESSURE_IDX
+import os, sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from gradrl import paths
+from gradrl.grfics_env import GrficsDefenseEnv, OBS_IDX, PRESSURE_IDX
 
 # ─────────────────────────────────────────────
 #  CONFIG
 # ─────────────────────────────────────────────
 SEED         = 42
-DATA_PATH    = r"D:\PhD_Project\data\grad_rl_final_dataset.csv"
-SCALER_PATH  = r"D:\PhD_Project\models\scaler_grfics_live.pkl"
-MODEL_DIR    = "models"
-RESULTS_DIR  = "docs/results"
+DATA_PATH    = str(paths.DATA_DIR / "grad_rl_final_dataset.csv")
+SCALER_PATH  = str(paths.MODEL_DIR / "scaler_grfics_live.pkl")
+MODEL_DIR    = str(paths.MODEL_DIR)
+RESULTS_DIR  = str(paths.RESULTS_DIR / "grfics")
 AGENT_PATH   = os.path.join(MODEL_DIR, "rl_defender_grfics")
 
 TOTAL_TIMESTEPS = 200_000   # increase to 500_000 for better convergence

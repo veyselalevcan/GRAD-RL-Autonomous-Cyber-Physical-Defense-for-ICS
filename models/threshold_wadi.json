@@ -1,0 +1,5 @@
+{
+  "threshold": 0.015759185522223763,
+  "dataset": "WADI",
+  "method": "percentile_99"
+}

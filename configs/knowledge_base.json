@@ -1,0 +1,50 @@
+{
+  "Spoofing": {
+    "cwe": "CWE-20 (Improper Input Validation)",
+    "mitigation": ["Switch Controller to MANUAL mode", "Cross-validate with redundant sensors"]
+  },
+  "Injection": {
+    "cwe": "CWE-77 (Command Injection)",
+    "mitigation": ["Isolate PLC from Network", "Revoke compromised credentials"]
+  },
+  "PumpManipulation": {
+    "cwe": "CWE-1299 (Tampering with Physical Devices)",
+    "mitigation": ["Check Pump RPM Logs", "Verify Voltage Levels", "Emergency Stop (E-Stop) if vibration detected"]
+  },
+  "IntegrityViolation": {
+    "cwe": "CWE-254 (Security Features Not Enabled)",
+    "mitigation": ["Restore Last Known Good Config", "Enable Integrity Checks (CRC)", "Re-calibrate Sensors"]
+  },
+  "DoS": {
+    "cwe": "CWE-400 (Resource Exhaustion)",
+    "mitigation": ["Enable Rate Limiting on Switch", "Block Source IP Address", "Switch to Local Control Panel"]
+  },
+  "SafetyBypass": {
+    "cwe": "CWE-805 (Buffer Access with Incorrect Length)",
+    "mitigation": ["IMMEDIATE SYSTEM SHUTDOWN", "Engage Mechanical Safety Locks", "Audit Logic Code"]
+  },
+  "MITM": {
+    "cwe": "CWE-300 (Man-in-the-Middle)",
+    "mitigation": ["Rotate Encryption Keys", "Check ARP Table"]
+  },
+  "Replay": {
+    "cwe": "CWE-294 (Capture-Replay)",
+    "mitigation": ["Implement Timestamp Checks", "Reset Session Keys"]
+  },
+  "Ransomware": {
+    "cwe": "CWE-1269 (Ransomware)",
+    "mitigation": ["Sever Network Connections", "Restore from Offline Backups"]
+  },
+  "MultiVector": {
+    "cwe": "CWE-Multiple",
+    "mitigation": ["Activate Incident Response Plan", "Isolate All External Connections"]
+  },
+  "Unknown": {
+    "cwe": "CWE-ZeroDay",
+    "mitigation": ["Manual Inspection"]
+  },
+  "Normal": {
+    "cwe": "N/A",
+    "mitigation": []
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "system_name": "SWaT - Secure Water Treatment",
+    "version": "CVSS v4.0 Topology"
+  },
+  "nodes": [
+    {"id": "HMI_Main", "type": "HMI", "criticality": 0.7, "label": "Central HMI"},
+    {"id": "Eng_Workstation", "type": "Workstation", "criticality": 1.0, "label": "Engineering Station"},
+    {"id": "Historian_DB", "type": "Server", "criticality": 0.6, "label": "Data Historian"},
+    
+    {"id": "PLC_P1", "type": "PLC", "criticality": 0.85, "label": "Controller P1"},
+    {"id": "PLC_P2", "type": "PLC", "criticality": 0.85, "label": "Controller P2"},
+    {"id": "PLC_P3", "type": "PLC", "criticality": 0.85, "label": "Controller P3"},
+    {"id": "PLC_P4", "type": "PLC", "criticality": 0.85, "label": "Controller P4"},
+    {"id": "PLC_P5", "type": "PLC", "criticality": 0.85, "label": "Controller P5"},
+    {"id": "PLC_P6", "type": "PLC", "criticality": 0.85, "label": "Controller P6"},
+
+    {"id": "Stage_P1", "type": "Process", "criticality": 0.55, "label": "Raw Water Intake"},
+    {"id": "Stage_P2", "type": "Process", "criticality": 0.60, "label": "Chemical Dosing"},
+    {"id": "Stage_P3", "type": "Process", "criticality": 0.65, "label": "Ultrafiltration"},
+    {"id": "Stage_P4", "type": "Process", "criticality": 0.70, "label": "Dechlorination"},
+    {"id": "Stage_P5", "type": "Process", "criticality": 0.75, "label": "Reverse Osmosis"},
+    {"id": "Stage_P6", "type": "Process", "criticality": 0.80, "label": "Storage"}
+  ],
+  "edges": [
+    {"source": "PLC_P1", "target": "PLC_P2"},
+    {"source": "PLC_P2", "target": "PLC_P3"},
+    {"source": "PLC_P3", "target": "PLC_P4"},
+    {"source": "PLC_P4", "target": "PLC_P5"},
+    {"source": "PLC_P5", "target": "PLC_P6"},
+    {"source": "PLC_P6", "target": "PLC_P1"},
+
+    {"source": "PLC_P1", "target": "HMI_Main"},
+    {"source": "PLC_P2", "target": "HMI_Main"},
+    {"source": "PLC_P3", "target": "HMI_Main"},
+    {"source": "PLC_P4", "target": "HMI_Main"},
+    {"source": "PLC_P5", "target": "HMI_Main"},
+    {"source": "PLC_P6", "target": "HMI_Main"},
+    
+    {"source": "Eng_Workstation", "target": "PLC_P1"},
+    {"source": "Eng_Workstation", "target": "PLC_P2"},
+    {"source": "Eng_Workstation", "target": "PLC_P3"},
+    {"source": "Eng_Workstation", "target": "PLC_P4"},
+    {"source": "Eng_Workstation", "target": "PLC_P5"},
+    {"source": "Eng_Workstation", "target": "PLC_P6"},
+
+    {"source": "PLC_P1", "target": "Stage_P1"}, {"source": "Stage_P1", "target": "PLC_P1"},
+    {"source": "PLC_P2", "target": "Stage_P2"}, {"source": "Stage_P2", "target": "PLC_P2"},
+    {"source": "PLC_P3", "target": "Stage_P3"}, {"source": "Stage_P3", "target": "PLC_P3"},
+    {"source": "PLC_P4", "target": "Stage_P4"}, {"source": "Stage_P4", "target": "PLC_P4"},
+    {"source": "PLC_P5", "target": "Stage_P5"}, {"source": "Stage_P5", "target": "PLC_P5"},
+    {"source": "PLC_P6", "target": "Stage_P6"}, {"source": "Stage_P6", "target": "PLC_P6"}
+  ]
+}

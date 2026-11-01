@@ -1,0 +1,24 @@
+=================================================================
+  GRAD-RL: Inference Latency Benchmark
+  Hardware: Intel64 Family 6 Model 78 Stepping 3, GenuineIntel
+  Warmup: 20  |  Measurements: 200
+=================================================================
+
+  Component                               Mean     Std      P50      P95
+  ---------------------------------------------------------------
+  Scaler (MinMaxScaler)                  0.19ms   0.16    0.14ms    0.51ms
+  LSTM-AE forward pass                  91.78ms  25.62   84.01ms  130.26ms
+  MSE + threshold decision              86.67ms  11.21   83.61ms  108.52ms
+  XGBoost classify                       1.21ms   0.30    1.10ms    1.77ms
+  PPO policy inference                   0.46ms   0.21    0.35ms    0.92ms
+  End-to-end pipeline                  148.71ms  38.12  138.88ms  199.27ms
+
+
+  LaTeX-ready table rows (for Table II in paper):
+  ------------------------------------------------------------
+  Scaler (MinMaxScaler)             & 0 & 0.2 \\
+  LSTM-AE forward pass              & 92 & 25.6 \\
+  MSE + threshold decision          & 87 & 11.2 \\
+  XGBoost classify                  & 1 & 0.3 \\
+  PPO policy inference              & 0 & 0.2 \\
+  \textbf{Total (end-to-end)} & \textbf{149} & \textbf{38.1} \\
