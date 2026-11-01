@@ -1,0 +1,16 @@
+============================================================
+  GRAD-RL: PPO AGENT EVALUATION REPORT [GRFICS]
+============================================================
+  Episodes evaluated : 50
+  Mean episode reward: 229.50 ± 334.51
+  Mean op. health    : 0.995
+
+  Action Distribution:
+    DO_NOTHING          : 72.8%
+    OPEN_SAFETY_VALVE   : 27.2%
+    EMERGENCY_SHUTDOWN  : 0.0%
+
+  Safety Metrics:
+    High-pressure events handled correctly : 99.8%
+    Attack steps with mitigation response  : 0.0%
+============================================================

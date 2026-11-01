@@ -37,8 +37,10 @@ SCALER_PATH_WADI        = "models/scaler_wadi.pkl"
 LABEL_ENCODER_PATH_SWAT = "models/label_encoder_swat.pkl"
 LABEL_ENCODER_PATH_WADI = "models/label_encoder_wadi.pkl"
 
-DATA_DIR    = r"D:\PhD_Project\data"
-PROJECT_DIR = r"D:\PhD_Project"
+from gradrl import paths
+
+DATA_DIR    = str(paths.DATA_DIR)
+PROJECT_DIR = str(paths.ROOT)
 
 # ─────────────────────────────────────────────
 #  STRICT LABEL COLUMN WHITELIST

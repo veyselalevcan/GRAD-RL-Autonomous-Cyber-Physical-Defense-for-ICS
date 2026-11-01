@@ -9,7 +9,7 @@ from datetime import datetime
 # --- CONFIGURATION ---
 DETECTIVE_URL = "http://127.0.0.1:8000/predict"
 DEFENSIVE_URL = "http://127.0.0.1:8001/decide"
-DATA_FILE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "SWaT_Dataset_Attack_v0.csv")
+DATA_FILE = os.path.join(os.environ.get("GRADRL_DATA_DIR", os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data")), "SWaT_Dataset_Attack_v0.csv")
 
 st.set_page_config(page_title="AIAS Defense Cockpit", page_icon="🛡️", layout="wide")
 

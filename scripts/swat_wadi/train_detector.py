@@ -86,7 +86,10 @@ from xgboost.callback import EarlyStopping as XGBEarlyStopping
 from sklearn.utils.class_weight import compute_sample_weight
 from sklearn.metrics import confusion_matrix, classification_report
 
-from data_loader import load_and_preprocess
+import os, sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from gradrl import paths
+from gradrl.data_loader import load_and_preprocess
 
 # ─────────────────────────────────────────────
 #  REPRODUCIBILITY
@@ -113,8 +116,8 @@ DATASET_CONFIG = {
 
 TIME_STEPS     = 10
 NORMAL_HOLDOUT = 10_000   # normal rows reserved for balanced LSTM-AE evaluation
-MODEL_DIR      = "models"
-RESULTS_DIR    = "docs/results"
+MODEL_DIR      = str(paths.MODEL_DIR)
+RESULTS_DIR    = str(paths.RESULTS_DIR / DATASET_TO_TRAIN.lower())
 
 os.makedirs(MODEL_DIR,   exist_ok=True)
 os.makedirs(RESULTS_DIR, exist_ok=True)

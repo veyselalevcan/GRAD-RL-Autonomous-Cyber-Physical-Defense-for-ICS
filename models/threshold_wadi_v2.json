@@ -1,0 +1,9 @@
+{
+  "threshold": 0.05499719,
+  "tau_offline": 0.04583098942682679,
+  "dataset": "WADI",
+  "method": "percentile_99",
+  "model": "v2_patience10",
+  "train_val_gap": 5.732,
+  "best_epoch": 12
+}

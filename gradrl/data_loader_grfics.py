@@ -48,8 +48,10 @@ from sklearn.preprocessing import MinMaxScaler, LabelEncoder
 # ─────────────────────────────────────────────
 #  CONFIGURATION
 # ─────────────────────────────────────────────
-DATA_DIR    = r"D:\PhD_Project\data"
-PROJECT_DIR = r"D:\PhD_Project"
+from gradrl import paths
+
+DATA_DIR    = str(paths.DATA_DIR)
+PROJECT_DIR = str(paths.ROOT)
 
 DATASET_FILE = "grad_rl_final_dataset.csv"
 SCALER_PATH  = "models/scaler_grfics_live.pkl"

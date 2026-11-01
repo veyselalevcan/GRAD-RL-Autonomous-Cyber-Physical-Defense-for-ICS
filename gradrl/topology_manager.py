@@ -22,7 +22,7 @@ import os
 # ─────────────────────────────────────────────
 CONFIG = {
     "DATASET": "SWaT",   # Options: "SWaT" | "WADI"
-    "TOPOLOGY_FILE_SWaT": "topology_config.json",
+    "TOPOLOGY_FILE_SWaT": "topology_swat.json",
     "TOPOLOGY_FILE_WADI": "topology_wadi_config.json",
 }
 
@@ -132,7 +132,7 @@ class GenericAssetMapper:
     # ──────────────────────────────────────────
 
     def _load_topology_from_json(self, filename: str):
-        config_path = os.path.join(os.path.dirname(__file__), filename)
+        config_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "configs", filename)
         if not os.path.exists(config_path):
             return
         try:

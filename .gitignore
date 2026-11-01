@@ -1,0 +1,23 @@
+# Datasets are not redistributed (see README, "Data")
+data/
+
+# Output of a new live session
+results/grfics_live/new_session/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Training logs and checkpoints
+logs/
+tensorboard/
+models/*_ckpt_*.zip
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

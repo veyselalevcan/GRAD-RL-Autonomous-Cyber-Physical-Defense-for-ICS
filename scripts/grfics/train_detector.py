@@ -37,7 +37,10 @@ from tensorflow.keras.layers import LSTM, Dense, Dropout, RepeatVector, TimeDist
 from tensorflow.keras.models import Sequential
 from xgboost.callback import EarlyStopping as XGBEarlyStopping
 
-from data_loader_grfics import load_and_preprocess, FEATURE_COLS
+import os, sys
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
+from gradrl import paths
+from gradrl.data_loader_grfics import load_and_preprocess, FEATURE_COLS
 
 # ─────────────────────────────────────────────
 #  REPRODUCIBILITY
@@ -55,8 +58,8 @@ DS_SUFFIX      = "grfics_live"
 TIME_STEPS     = 10          # LSTM sequence length
 LSTM_EPOCHS    = 20          # max (EarlyStopping active, patience=3)
 NORMAL_HOLDOUT = 5_000       # normal rows held out for balanced Stage 2 eval
-MODEL_DIR      = "models"
-RESULTS_DIR    = "docs/results"
+MODEL_DIR      = str(paths.MODEL_DIR)
+RESULTS_DIR    = str(paths.RESULTS_DIR / "grfics")
 
 os.makedirs(MODEL_DIR,   exist_ok=True)
 os.makedirs(RESULTS_DIR, exist_ok=True)

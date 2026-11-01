@@ -26,9 +26,9 @@ from datetime import datetime
 DETECTIVE_URL = "http://127.0.0.1:8000/predict"
 DEFENSIVE_URL = "http://127.0.0.1:8001/decide"
 
-BASE_DATA_DIR = os.path.join(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data"
-)
+BASE_DATA_DIR = os.environ.get("GRADRL_DATA_DIR", os.path.join(
+    os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data"
+))
 
 DATA_FILES = {
     "SWaT": os.path.join(BASE_DATA_DIR, "SWaT_Dataset_Attack_v0.csv"),

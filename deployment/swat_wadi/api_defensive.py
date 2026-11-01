@@ -27,9 +27,10 @@ from stable_baselines3 import PPO
 #  IMPORT PATH + SIBLING MODULES
 # ─────────────────────────────────────────────
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 
 try:
-    from topology_manager import GenericAssetMapper
+    from gradrl.topology_manager import GenericAssetMapper
     _TOPOLOGY_AVAILABLE = True
     print("✅ Topology Manager: module found.")
 except ImportError as e:
@@ -55,7 +56,7 @@ app = FastAPI(title="AIAS Defensive Brain", version="6.0 (Dataset-Agnostic)")
 # ─────────────────────────────────────────────
 BASE_DIR    = os.path.dirname(os.path.abspath(__file__))
 MODEL_DIR   = os.path.join(BASE_DIR, "..", "..", "models")
-AGENT_PATH  = os.path.join(MODEL_DIR, "rl_defender_agent.zip")
+AGENT_PATH  = os.path.join(MODEL_DIR, "rl_defender_swat_abstract.zip")
 
 HUMAN_IN_THE_LOOP  = True
 CRITICAL_THRESHOLD = 9.0   # IEC 61511 Safety Gate

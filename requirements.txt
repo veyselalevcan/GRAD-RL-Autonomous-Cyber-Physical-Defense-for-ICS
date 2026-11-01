@@ -1,0 +1,24 @@
+# Tested with Python 3.13 on Windows (CPU only).
+numpy==2.4.2
+pandas==3.0.3
+scipy==1.17.0
+scikit-learn==1.8.0
+xgboost==3.2.0
+tensorflow==2.21.0
+keras==3.14.0
+torch==2.11.0
+stable-baselines3==2.8.0
+gymnasium==1.2.3
+networkx==3.6.1
+joblib==1.5.3
+matplotlib==3.10.8
+seaborn==0.13.2
+
+# Live deployment (FastAPI services, Modbus bridge, dashboards)
+fastapi==0.136.1
+uvicorn==0.47.0
+pydantic==2.13.4
+requests==2.34.2
+pymodbus==3.13.0
+streamlit==1.57.0
+plotly==6.7.0

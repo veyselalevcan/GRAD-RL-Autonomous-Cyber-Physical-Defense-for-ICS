@@ -1,81 +1,137 @@
-# GRAD-RL: Autonomous Cyber-Physical Defense for ICS
+# GRAD-RL: Autonomous Cyber-Physical Defense for Industrial Control Systems
 
-[![Paper](https://img.shields.io/badge/IEEE_Access-DOI-blue)](#) 
 [![Dataset](https://img.shields.io/badge/Dataset-Zenodo-green)](https://doi.org/10.5281/zenodo.20433521)
 [![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
+![Python](https://img.shields.io/badge/Python-3.13-blue)
 
-## Overview
-**GRAD-RL** (Graph-Informed Autonomous Cyber-Physical Defense) is a closed-loop, five-stage autonomous defense pipeline designed for Industrial Control Systems (ICS). It integrates unsupervised anomaly detection, MITRE ATT&CK-aligned threat classification, graph-theoretic risk scoring, Deep Reinforcement Learning (DRL) autonomous response, and an IEC 61511/62443-compliant safety gate.
+Code, trained models and evaluation logs for the paper
+**"GRAD-RL: Autonomous Cyber-Physical Defense for Industrial Control Systems via Graph-Augmented Hybrid AI and MITRE ATT&CK-Aligned Threat Classification"** (submitted to IEEE Access).
 
-This repository contains the complete source code, deployment APIs, and environment simulation files used to validate the framework across **GRFICSv3**, **SWaT**, and **WADI** testbeds.
+GRAD-RL is an end-to-end defense pipeline for industrial control systems. It detects anomalies in process data, names the attack technique in MITRE ATT&CK for ICS terms, scores its risk from the safety impact and the position of the targeted asset in the plant network, and recommends a response through a reinforcement learning agent. A human-in-the-loop safety gate aligned with IEC 62443 holds every high-risk or irreversible action for operator approval, and every decision comes with a plain-language explanation.
 
----
+![GRAD-RL pipeline](docs/architecture.jpg)
 
-## System Architecture & Codebase Structure
+## Pipeline
 
-The repository is modularized into distinct stages of the cyber-physical defense pipeline:
+| Stage | What it does | Code |
+|---|---|---|
+| I–II Detection | LSTM autoencoder trained on normal data only; anomaly if the reconstruction error exceeds the P99 threshold of the normal training windows; culprit sensor = largest per-sensor error | `scripts/*/train_detector.py` |
+| III Technique | XGBoost classifier with MITRE ATT&CK for ICS technique IDs as class labels | `scripts/*/train_detector.py` |
+| IV Risk | CVSS 4.0-style impact with safety weight 1.5, amplified by the normalized betweenness centrality of the targeted asset, capped at 10 | `gradrl/topology_manager.py`, `configs/` |
+| V Response | **Mode 2** (GRFICSv3): PPO agent on the 13 scaled sensor values. **Mode 1** (SWaT): deterministic CVSS-to-action mapping | `scripts/grfics/train_ppo.py`, `gradrl/grfics_env.py` |
+| Gate | Human approval if severity ≥ θ_g or the action is `EMERGENCY_SHUTDOWN`; θ_g = 9.0 for SWaT, 7.0 in the GRFICSv3 live deployment | `deployment/*/api_defensive.py` |
 
-### 1. Data Processing & Loading (`data_loader.py`)
-Handles dynamic dataset switching and strict preprocessing for heterogeneous ICS data.
-* **Strict Label Engineering:** Aggregates raw experimental labels into precise MITRE ATT&CK for ICS techniques (e.g., T0836, T0856) to resolve spurious label granularity.
-* **Architecture-Agnostic:** Automatically adapts to different sensor dimensionalities (e.g., SWaT 51-dim, WADI 123-dim) without structural code changes.
+In the reported experiments GRAD-RL runs as a **decision-support layer**: actions are recommended and logged, never written back to a PLC.
 
-### 2. Hybrid Detection Pipeline (`train_hybrid.py`)
-Trains the core perception and diagnostic layers of the framework.
-* **Stage 1 (Perception):** An **LSTM-Autoencoder** trained exclusively on normal operational data to learn the physical invariants of the process. It flags anomalies using a statistically calibrated $P_{99}$ or Transductive Quantile threshold.
-* **Stage 2 (Diagnostic):** An **XGBoost Classifier** that takes the anomalous windows and attributes them to specific MITRE ATT&CK techniques, providing SOC-ready intelligence.
+## Repository layout
 
-### 3. Contextual Risk & Graph Modeling (`topology_manager.py`)
-Prevents "topological blindness" by calculating the structural consequence potential of every asset in the ICS network.
-* **Graph Centrality:** Models the ICS as a directed graph and calculates Brandes' Betweenness Centrality for all nodes to identify structural bottlenecks.
-* **CVSS v4.0 & IEC 61511 Alignment:** Integrates a differentiable risk tensor utilizing a custom $w_s = 1.5$ safety multiplier, prioritizing physical safety impacts over IT-centric metrics.
-* **GenericAssetMapper (GAM):** A surjective mapping protocol that translates site-specific tags (e.g., `FIT101`) into a universal 11-stage functional ontology (e.g., `SUPPLY`, `CHEMICAL_DOSING`).
+```
+gradrl/                  shared library code
+  paths.py               repository-relative paths (data, models, configs, results)
+  data_loader.py         SWaT / WADI loading and preprocessing
+  data_loader_grfics.py  GRFICSv3 loading, MITRE label engineering
+  topology_manager.py    asset graph, betweenness centrality, risk score, tag mapping
+  grfics_env.py          replay-based Gymnasium environment for the GRFICSv3 PPO agent
+  scada_env.py           exploratory abstract SWaT environment (not used for the paper results)
+configs/                 SWaT topology graph (15 nodes, 30 edges) and mitigation knowledge base
+scripts/
+  grfics/                train detector, train PPO, PPO vs. baselines, latency benchmark
+  swat_wadi/             train detector, SWaT live streaming, safety-weight sensitivity, WADI retraining and sweep
+deployment/
+  grfics_live/           FastAPI detective (port 8000) and defensive (port 8001) services, Modbus bridge
+  swat_wadi/             dataset-agnostic services used for SWaT and WADI
+  dashboards/            Streamlit operator dashboards (GRFICSv3 live, SWaT, multi-dataset)
+models/                  trained detectors, classifiers, scalers, thresholds and PPO agents
+results/                 the numbers reported in the paper, by dataset
+experiments/             exploratory pipelines on other datasets (HAI, MSU gas, MSU power); not part of the paper
+docs/                    figures
+```
 
-### 4. Reinforcement Learning Environment (`scada_env.py` & `train_rl_agent.py`)
-A custom Gymnasium environment built to train the autonomous Proximal Policy Optimization (PPO) Blue Agent.
-* **Dual-Mode Observation:** Compresses raw physical telemetry into a 5-dimensional *Abstract Observation Tensor* (Reconstruction Error, Risk Score, Cascade Potential, Operational Health, Dataset Flag) for high-dimensional networks.
-* **Reward Shaping:** Balances security mitigation against operational continuity, heavily penalizing unnecessary emergency shutdowns (false positives) and missed critical threats.
-
-### 5. Live Deployment Microservices (`api_detective.py` & `api_defensive.py`)
-FastAPI-based microservices designed for real-time (1 Hz Modbus TCP) live deployment.
-* **Detective Node:** Ingests streaming telemetry, computes reconstruction errors, predicts MITRE techniques, and generates Culprit Sensor Attribution ($\argmax \varepsilon_j$) for Explainable AI (XAI) reports.
-* **Defensive Node:** Receives the intelligence, queries the trained PPO agent, and enforces the **IEC Safety Gate**. It intercepts high-risk recommendations (Risk $\geq$ 9.0 or Emergency Shutdowns) and downgrades them to `REQUIRE_HUMAN_APPROVAL`, ensuring deterministic safety compliance.
-
----
-
-## Datasets & Environments
-
-The pipeline is validated across three distinct ICS operational domains:
-1. **GRFICSv3 (Single-Unit):** 13-feature chemical reactor digital twin. Contains 90,728 samples with explicit MITRE annotations.
-2. **SWaT (Sequential):** 51-feature secure water treatment testbed.
-3. **WADI (Parallel):** 123-feature water distribution network.
-
-🔗 **The GRFICSv3 MITRE-Annotated Dataset, Live Telemetry, and XAI Logs are publicly available on Zenodo:** [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.20433521.svg)](https://doi.org/10.5281/zenodo.20433521)
-
----
-
-## Results Summary
-
-| Dataset | LSTM Acc. | FPR | FN | XGB F1 (Macro) |
-|---------|-----------|-----|----|--------|
-| **GRFICSv3** | 99.70% | 0.44% | 0 | 0.9970 |
-| **SWaT** | 99.16% | 1.20% | 0 | 0.8890 |
-| **WADI*** | 74.17% | 7.96% | 3,338 | 0.6250 |
-
-*\*WADI FPR represents the performance after applying deployment-specific $P_{92}$ Transductive Quantile Calibration to neutralize extreme inter-dataset domain shifts.*
-
----
-
-## Installation & Quick Start
-
-Clone the repository and install the required dependencies:
+## Installation
 
 ```bash
-# Clone the repository
-git clone [https://github.com/veyselalevcan/GRAD-RL-Autonomous-Cyber-Physical-Defense-for-ICS.git](https://github.com/veyselalevcan/GRAD-RL-Autonomous-Cyber-Physical-Defense-for-ICS.git)
-
-# Navigate to the project directory
+git clone https://github.com/veyselalevcan/GRAD-RL-Autonomous-Cyber-Physical-Defense-for-ICS.git
 cd GRAD-RL-Autonomous-Cyber-Physical-Defense-for-ICS
-
-# Install requirements
+python -m venv .venv
 pip install -r requirements.txt
+```
+
+## Data
+
+The datasets are not redistributed here. Put them in `data/` or point `GRADRL_DATA_DIR` at the folder that contains them.
+
+| File | Source |
+|---|---|
+| `grad_rl_final_dataset.csv` | GRFICSv3 MITRE-annotated dataset (90,728 samples), [Zenodo 10.5281/zenodo.20433521](https://doi.org/10.5281/zenodo.20433521) |
+| `SWaT_Dataset_Normal_v1.csv`, `SWaT_Dataset_Attack_v0.csv` | iTrust, SUTD (access on request) |
+| `WADI_14days_new.csv`, `WADI_attackdataLABLE.csv` | iTrust, SUTD (access on request) |
+
+```bash
+export GRADRL_DATA_DIR=/path/to/data      # PowerShell: $env:GRADRL_DATA_DIR="D:\data"
+```
+
+## Reproducing the paper
+
+Run every script from the repository root; outputs go to `results/<dataset>/`. The models in `models/` are the ones behind the paper, and retraining overwrites them.
+
+| Paper item | Command | Output |
+|---|---|---|
+| GRFICSv3 detection and classification (Figs. 2–4, Table 7) | `python scripts/grfics/train_detector.py` | `results/grfics/rf_classification_report_grfics_live.csv` |
+| GRFICSv3 PPO training and evaluation (Fig. 5) | `python scripts/grfics/train_ppo.py` | `results/grfics/rl_evaluation_report.txt` |
+| PPO vs. baseline policies (Table 8) | `python scripts/grfics/ppo_vs_baselines.py` | `results/grfics/ppo_vs_baselines.json` |
+| PPO outlier episode (Section VI-A) | `python scripts/grfics/ppo_outlier_episode.py` | console |
+| Inference latency (Table 11) | `python scripts/grfics/latency_benchmark.py` | `results/grfics/latency_report.txt` |
+| SWaT and WADI detection and classification | `python scripts/swat_wadi/train_detector.py` (set `DATASET_TO_TRAIN`) | `results/swat/`, `results/wadi/` |
+| SWaT live streaming (Section VI-C) | `python scripts/swat_wadi/swat_live_stream.py` | `results/swat/telemetry_audit_swat*.csv` |
+| Safety-weight sensitivity (Table 3) | `python scripts/swat_wadi/ws_sensitivity.py` | console |
+| WADI extended-patience model and threshold sweep (Table 10) | `python scripts/swat_wadi/wadi_retrain.py`, then `python scripts/swat_wadi/wadi_sweep.py` | `results/wadi/wadi_threshold_sweep.txt` |
+
+`results/grfics_live/` holds the record of the 1 h 51 min live session on the GRFICSv3 digital twin: the audit log (`telemetry_audit.csv`, 10,352 observations), the XAI report of every anomalous event (`xai_incidents.json`, one JSON object per line) and the attack schedule (`experiment_journal.txt`).
+
+The SWaT full-campaign evaluation (36 attacks, Section VI-G) uses a second implementation of the pipeline that is not part of this repository.
+
+## Live deployment on GRFICSv3
+
+Requires a running [GRFICSv3](https://github.com/Fortiphyd/GRFICSv3) instance whose PLC is reachable over Modbus TCP. Set `PLC_IP` and `PLC_PORT` in `deployment/grfics_live/live_bridge.py`, then start the services below. The detector service is configured exactly as in the recorded live session: it flags an anomaly when the reconstruction error exceeds a fixed operating threshold of 0.5 (`api_detective.py`), not the offline P99 threshold in `models/threshold_grfics_live.json`.
+
+```bash
+uvicorn deployment.grfics_live.api_detective:app --port 8000
+uvicorn deployment.grfics_live.api_defensive:app --port 8001
+python deployment/grfics_live/live_bridge.py                 # polls the PLC at 1 Hz
+streamlit run deployment/dashboards/dashboard_grfics_live.py  # operator view; logs to results/grfics_live/new_session/
+```
+
+## Results summary
+
+| Dataset | LSTM-AE accuracy | FPR | FN | XGBoost macro F1 |
+|---|---|---|---|---|
+| GRFICSv3 | 99.70 % | 0.44 % | 0 | 0.997 |
+| SWaT | 99.16 % | 1.20 % | 0 | 0.889 |
+| WADI | 74.17 % | 24.3 % | 3,338 | 0.625 |
+
+WADI is a boundary case: the false-positive rate stays near 23 % for every threshold, because the normal training period does not cover the operating states of the attack period.
+
+| GRFICSv3 response policy (50 episodes) | Return | High-pressure response |
+|---|---|---|
+| PPO (GRAD-RL) | 229.5 ± 334.5 | 99.8 % |
+| Threshold rule (valve if p ≥ 0.90) | 4.9 ± 293.1 | 0.0 % |
+| Never act | 37.2 ± 295.1 | 0.0 % |
+
+End-to-end latency is 149 ± 38 ms per decision on a CPU-only laptop (Intel Core i7-6600U), well inside the 1 s Modbus polling cycle.
+
+## Known limitations
+
+- On GRFICSv3, each technique was recorded as one attack episode, the classifier is trained and tested on parts of that episode, and XGBoost early stopping monitors the test split. The macro F1 therefore measures recognition within known scenarios.
+- The technique classifier is closed-set: unseen techniques are detected as anomalies but reported under the nearest training class.
+- In SWaT, 129 of 503 Attack6 samples are classified as Attack4, which has a lower severity.
+- The topology-weighted risk score does not drive the reported SWaT decisions; Mode 1 uses the technique-level CVSS mapping.
+
+The paper lists all limitations.
+
+## Citation
+
+See [`CITATION.cff`](CITATION.cff). The paper reference will be added after publication.
+
+## License
+
+MIT, see [LICENSE](LICENSE). The SWaT and WADI datasets are subject to the iTrust terms of use.
