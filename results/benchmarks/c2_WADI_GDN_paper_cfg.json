@@ -1,0 +1,37 @@
+{
+ "dataset": "WADI",
+ "method": "GDN",
+ "n_features": 123,
+ "n_train": 76297,
+ "n_test": 17280,
+ "config": "GDN paper (dim 128, top-k 30, max 50 epochs, patience 15)",
+ "epochs": 23,
+ "train_seconds": 18831.0,
+ "val_p99": {
+  "precision": 0.0625,
+  "recall": 0.602,
+  "f1": 0.1132,
+  "fpr": 0.5606,
+  "attacks_detected": "12/14"
+ },
+ "commissioning_conformal": {
+  "precision": 0.0509,
+  "recall": 0.4822,
+  "f1": 0.092,
+  "fpr": 0.5762,
+  "n_calibration": 504,
+  "attacks_detected": "12/14"
+ },
+ "oracle_best_f1": {
+  "precision": 0.0772,
+  "recall": 0.9376,
+  "f1": 0.1427,
+  "fpr": 0.6955
+ },
+ "oracle_point_adjusted": {
+  "precision": 0.0819,
+  "recall": 1.0,
+  "f1": 0.1515,
+  "fpr": 0.6955
+ }
+}

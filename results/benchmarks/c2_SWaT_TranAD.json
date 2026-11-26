@@ -1,0 +1,36 @@
+{
+ "dataset": "SWaT",
+ "method": "TranAD",
+ "n_features": 51,
+ "n_train": 47340,
+ "n_test": 44991,
+ "epochs": 5,
+ "train_seconds": 370.9,
+ "val_p99": {
+  "precision": 0.1494,
+  "recall": 0.9119,
+  "f1": 0.2568,
+  "fpr": 0.7219,
+  "attacks_detected": "30/35"
+ },
+ "commissioning_conformal": {
+  "precision": 0.1495,
+  "recall": 0.9041,
+  "f1": 0.2566,
+  "fpr": 0.7182,
+  "n_calibration": 169,
+  "attacks_detected": "29/35"
+ },
+ "oracle_best_f1": {
+  "precision": 0.9845,
+  "recall": 0.6466,
+  "f1": 0.7806,
+  "fpr": 0.0014
+ },
+ "oracle_point_adjusted": {
+  "precision": 0.9864,
+  "recall": 0.7408,
+  "f1": 0.8461,
+  "fpr": 0.0014
+ }
+}

@@ -1,0 +1,210 @@
+{
+ "alpha": 0.01,
+ "wadi": {
+  "rows": 99991,
+  "first_attack_window": 5094,
+  "calibration_windows": 3600,
+  "zone_sizes": {
+   "Z1": 19,
+   "Z2": 82,
+   "Z3": 13
+  },
+  "n_attack_segments_eval": 7,
+  "thresholds": {
+   "P_paper": 0.018911022626668515,
+   "CG": 0.025695258751511574,
+   "CM": {
+    "Z1": 0.06526084989309311,
+    "Z2": 0.03764236718416214,
+    "Z3": 0.009381386451423168
+   }
+  },
+  "P_paper": {
+   "FPR_%": 25.95,
+   "recall_%": 49.0,
+   "precision_%": 12.25,
+   "attacks_detected": "6/7",
+   "false_alarm_windows_per_h": 934.1
+  },
+  "CG_conformal_global": {
+   "FPR_%": 24.43,
+   "recall_%": 38.55,
+   "precision_%": 10.45,
+   "attacks_detected": "6/7",
+   "false_alarm_windows_per_h": 879.3
+  },
+  "CM_mondrian_zone": {
+   "FPR_%": 26.9,
+   "recall_%": 51.56,
+   "precision_%": 12.41,
+   "attacks_detected": "6/7",
+   "false_alarm_windows_per_h": 968.5
+  },
+  "CG_persist_3of5": {
+   "FPR_%": 24.39,
+   "recall_%": 38.51,
+   "precision_%": 10.45,
+   "attacks_detected": "6/7",
+   "false_alarm_windows_per_h": 877.9
+  },
+  "CM_persist_3of5": {
+   "FPR_%": 26.86,
+   "recall_%": 51.54,
+   "precision_%": 12.42,
+   "attacks_detected": "6/7",
+   "false_alarm_windows_per_h": 967.1
+  },
+  "CG_FPR_by_time_block_%": [
+   0.17,
+   0.31,
+   0.41,
+   5.39,
+   40.28,
+   100.0
+  ],
+  "CG_rolling_recal_every_3600s": {
+   "FPR_%": 4.19,
+   "recall_%": 44.66,
+   "precision_%": 44.07,
+   "attacks_detected": "6/7",
+   "false_alarm_windows_per_h": 150.8,
+   "tau_range": [
+    0.01668,
+    108089.83594
+   ]
+  },
+  "CG_rolling_recal_every_900s": {
+   "FPR_%": 2.91,
+   "recall_%": 31.64,
+   "precision_%": 44.53,
+   "attacks_detected": "6/7",
+   "false_alarm_windows_per_h": 104.9,
+   "tau_range": [
+    0.01084,
+    108089.83594
+   ]
+  }
+ },
+ "grfics_live": {
+  "calibration_samples": 315,
+  "calibration_mse_median": 0.032508,
+  "tau_conformal": 0.238619,
+  "tau_paper": 0.5,
+  "tau_offline_P99": 0.0027309285942465067,
+  "scenarios": [
+   {
+    "scenario": "T0836",
+    "n": 220,
+    "alarm_%_paper": 93.2,
+    "alarm_%_conformal": 95.5
+   },
+   {
+    "scenario": "T0813",
+    "n": 201,
+    "alarm_%_paper": 100.0,
+    "alarm_%_conformal": 100.0
+   },
+   {
+    "scenario": "T0836_RAMP_UP",
+    "n": 156,
+    "alarm_%_paper": 90.4,
+    "alarm_%_conformal": 94.2
+   },
+   {
+    "scenario": "T0836_ULTRA_SLEY",
+    "n": 147,
+    "alarm_%_paper": 70.1,
+    "alarm_%_conformal": 81.0
+   },
+   {
+    "scenario": "T0836_RAMP_DOWN",
+    "n": 180,
+    "alarm_%_paper": 96.7,
+    "alarm_%_conformal": 97.8
+   },
+   {
+    "scenario": "T0856",
+    "n": 159,
+    "alarm_%_paper": 0.0,
+    "alarm_%_conformal": 0.0
+   },
+   {
+    "scenario": "T0814",
+    "n": 32,
+    "alarm_%_paper": 0.0,
+    "alarm_%_conformal": 0.0
+   },
+   {
+    "scenario": "T0853_PULSE",
+    "n": 173,
+    "alarm_%_paper": 0.0,
+    "alarm_%_conformal": 0.0
+   },
+   {
+    "scenario": "T0853_PULSE_FLOOD",
+    "n": 169,
+    "alarm_%_paper": 0.0,
+    "alarm_%_conformal": 0.0
+   },
+   {
+    "scenario": "T0836_MASS_FLOOD",
+    "n": 145,
+    "alarm_%_paper": 0.0,
+    "alarm_%_conformal": 0.0
+   },
+   {
+    "scenario": "T0836_MASS_RESILIENT",
+    "n": 164,
+    "alarm_%_paper": 15.2,
+    "alarm_%_conformal": 34.8
+   },
+   {
+    "scenario": "T0831_INTERLOCK",
+    "n": 155,
+    "alarm_%_paper": 89.7,
+    "alarm_%_conformal": 93.5
+   },
+   {
+    "scenario": "T0827_CONFLICT",
+    "n": 120,
+    "alarm_%_paper": 86.7,
+    "alarm_%_conformal": 91.7
+   },
+   {
+    "scenario": "T0856_SPOOF",
+    "n": 162,
+    "alarm_%_paper": 0.0,
+    "alarm_%_conformal": 0.0
+   },
+   {
+    "scenario": "T0882_COMBINED",
+    "n": 174,
+    "alarm_%_paper": 92.0,
+    "alarm_%_conformal": 94.8
+   },
+   {
+    "scenario": "SWAT_CASCADE_T0827",
+    "n": 175,
+    "alarm_%_paper": 92.0,
+    "alarm_%_conformal": 94.9
+   },
+   {
+    "scenario": "UKRAINE_INDUSTROYER",
+    "n": 112,
+    "alarm_%_paper": 97.3,
+    "alarm_%_conformal": 98.2
+   },
+   {
+    "scenario": "TRITON_SIS_SABOTAGE",
+    "n": 177,
+    "alarm_%_paper": 90.4,
+    "alarm_%_conformal": 93.8
+   }
+  ],
+  "quiet_tail_false_alarm_%_paper": 0.0,
+  "quiet_tail_false_alarm_%_conformal": 0.0,
+  "scenarios_detected_paper": 12,
+  "scenarios_detected_conformal": 12,
+  "quiet_tail_samples": 774
+ }
+}

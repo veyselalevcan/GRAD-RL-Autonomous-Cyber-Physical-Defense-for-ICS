@@ -1,0 +1,67 @@
+{
+ "calibration_rows": 423,
+ "calibration_minutes": 7.0,
+ "tau_live": 0.0032771143130958078,
+ "tau_conformal": 2532.498046875,
+ "evaluated_episodes": 28,
+ "tau_live (paper)": {
+  "false_alarm_rate_normal": 1.0,
+  "per_technique": {
+   "T0813": {
+    "episodes_detected": "6/6",
+    "median_delay_s": 0.0,
+    "flagged_row_share": 1.0
+   },
+   "T0813+T0836": {
+    "episodes_detected": "5/5",
+    "median_delay_s": 0.0,
+    "flagged_row_share": 1.0
+   },
+   "T0814": {
+    "episodes_detected": "5/5",
+    "median_delay_s": 0.0,
+    "flagged_row_share": 1.0
+   },
+   "T0836": {
+    "episodes_detected": "6/6",
+    "median_delay_s": 0.0,
+    "flagged_row_share": 1.0
+   },
+   "T0856": {
+    "episodes_detected": "6/6",
+    "median_delay_s": 0.0,
+    "flagged_row_share": 1.0
+   }
+  }
+ },
+ "conformal on new instance": {
+  "false_alarm_rate_normal": 0.0066,
+  "per_technique": {
+   "T0813": {
+    "episodes_detected": "6/6",
+    "median_delay_s": 1.0,
+    "flagged_row_share": 0.997
+   },
+   "T0813+T0836": {
+    "episodes_detected": "5/5",
+    "median_delay_s": 1.0,
+    "flagged_row_share": 0.997
+   },
+   "T0814": {
+    "episodes_detected": "5/5",
+    "median_delay_s": 13.0,
+    "flagged_row_share": 0.009
+   },
+   "T0836": {
+    "episodes_detected": "6/6",
+    "median_delay_s": 72.5,
+    "flagged_row_share": 0.722
+   },
+   "T0856": {
+    "episodes_detected": "4/6",
+    "median_delay_s": 63.5,
+    "flagged_row_share": 0.004
+   }
+  }
+ }
+}

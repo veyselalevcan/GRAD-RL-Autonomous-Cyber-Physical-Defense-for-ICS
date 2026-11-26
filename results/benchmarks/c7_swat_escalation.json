@@ -1,0 +1,186 @@
+{
+ "classes": [
+  "Attack1",
+  "Attack2",
+  "Attack3",
+  "Attack4",
+  "Attack5",
+  "Attack6"
+ ],
+ "severity": {
+  "Attack1": 6.5,
+  "Attack5": 6.5,
+  "Attack4": 7.5,
+  "Attack2": 9.5,
+  "Attack3": 9.5,
+  "Attack6": 9.5
+ },
+ "episodes": [
+  {
+   "episode": "Attack1#0",
+   "n": "940",
+   "start": "2015-12-28 10:29:14",
+   "end": "2015-12-28 10:44:53"
+  },
+  {
+   "episode": "Attack2#0",
+   "n": "443",
+   "start": "2015-12-28 10:51:08",
+   "end": "2015-12-28 10:58:30"
+  },
+  {
+   "episode": "Attack3#0",
+   "n": "429",
+   "start": "2015-12-28 12:08:25",
+   "end": "2015-12-28 12:15:33"
+  },
+  {
+   "episode": "Attack4#0",
+   "n": "469",
+   "start": "2016-01-02 11:17:02",
+   "end": "2016-01-02 11:24:50"
+  },
+  {
+   "episode": "Attack5#0",
+   "n": "281",
+   "start": "2016-01-02 11:31:38",
+   "end": "2016-01-02 11:36:18"
+  },
+  {
+   "episode": "Attack6#0",
+   "n": "1675",
+   "start": "2016-01-02 13:13:02",
+   "end": "2016-01-02 13:40:56"
+  }
+ ],
+ "paper_es_on_test": {
+  "macro_f1": 0.8885,
+  "best_iteration": 195,
+  "confusion": {
+   "Attack1": {
+    "Attack1": 282
+   },
+   "Attack2": {
+    "Attack2": 113,
+    "Attack6": 20
+   },
+   "Attack3": {
+    "Attack3": 108,
+    "Attack6": 21
+   },
+   "Attack4": {
+    "Attack4": 141
+   },
+   "Attack5": {
+    "Attack5": 85
+   },
+   "Attack6": {
+    "Attack4": 129,
+    "Attack6": 374
+   }
+  },
+  "attack6_as_attack4": 129,
+  "F0_paper_mapping": {
+   "high_sev_on_valve": 129,
+   "high_sev_on_monitor": 0,
+   "low_sev_escalated_to_approval": 0,
+   "approval_share": 0.4996,
+   "n": 1273
+  }
+ },
+ "es_on_validation": {
+  "macro_f1": 0.8185,
+  "best_iteration": 469,
+  "confusion": {
+   "Attack1": {
+    "Attack1": 282
+   },
+   "Attack2": {
+    "Attack2": 113,
+    "Attack6": 20
+   },
+   "Attack3": {
+    "Attack3": 129
+   },
+   "Attack4": {
+    "Attack4": 141
+   },
+   "Attack5": {
+    "Attack5": 31,
+    "Attack6": 54
+   },
+   "Attack6": {
+    "Attack4": 134,
+    "Attack6": 369
+   }
+  },
+  "attack6_as_attack4": 134,
+  "F0_paper_mapping": {
+   "high_sev_on_valve": 134,
+   "high_sev_on_monitor": 0,
+   "low_sev_escalated_to_approval": 54,
+   "approval_share": 0.5381,
+   "n": 1273
+  },
+  "F1_prob_escalation": {
+   "high_sev_on_valve": 134,
+   "high_sev_on_monitor": 0,
+   "low_sev_escalated_to_approval": 54,
+   "approval_share": 0.5381,
+   "n": 1273,
+   "q_selected_on_validation": 0.5,
+   "sweep": {
+    "0.05": {
+     "high_sev_on_valve": 129,
+     "high_sev_on_monitor": 0,
+     "low_sev_escalated_to_approval": 85,
+     "approval_share": 0.5664,
+     "n": 1273
+    },
+    "0.1": {
+     "high_sev_on_valve": 129,
+     "high_sev_on_monitor": 0,
+     "low_sev_escalated_to_approval": 85,
+     "approval_share": 0.5664,
+     "n": 1273
+    },
+    "0.2": {
+     "high_sev_on_valve": 129,
+     "high_sev_on_monitor": 0,
+     "low_sev_escalated_to_approval": 85,
+     "approval_share": 0.5664,
+     "n": 1273
+    },
+    "0.3": {
+     "high_sev_on_valve": 129,
+     "high_sev_on_monitor": 0,
+     "low_sev_escalated_to_approval": 85,
+     "approval_share": 0.5664,
+     "n": 1273
+    },
+    "0.5": {
+     "high_sev_on_valve": 134,
+     "high_sev_on_monitor": 0,
+     "low_sev_escalated_to_approval": 54,
+     "approval_share": 0.5381,
+     "n": 1273
+    }
+   }
+  },
+  "F2_incident_max": {
+   "high_sev_on_valve": 0,
+   "high_sev_on_monitor": 0,
+   "low_sev_escalated_to_approval": 65,
+   "approval_share": 0.652,
+   "n": 1273
+  },
+  "F1_plus_F2": {
+   "high_sev_on_valve": 0,
+   "high_sev_on_monitor": 0,
+   "low_sev_escalated_to_approval": 65,
+   "approval_share": 0.652,
+   "n": 1273
+  }
+ },
+ "leave_one_episode_out": []
+}

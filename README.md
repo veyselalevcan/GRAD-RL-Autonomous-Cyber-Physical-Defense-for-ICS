@@ -119,6 +119,24 @@ WADI is a boundary case: the false-positive rate stays near 23 % for every thres
 
 End-to-end latency is 149 ± 38 ms per decision on a CPU-only laptop (Intel Core i7-6600U), well inside the 1 s Modbus polling cycle.
 
+## Extended Benchmarks and Closed-Loop Twin Data
+
+Additional benchmark scripts, trained label-free PPO checkpoints, and closed-loop digital-twin datasets are organized under `datasets/extended/`, `scripts/benchmarks/`, and `results/benchmarks/`:
+
+| Component | Path | Description |
+|---|---|---|
+| Repeated episodes & closed-loop logs | `datasets/extended/grficsv3_repeated_episodes_and_closed_loop.csv` | 30 independent GRFICSv3 attack episodes (5 techniques × 6 repetitions, process + PLC register state) and 40 closed-loop PLC mitigation runs |
+| Closed-loop run summary | `datasets/extended/grficsv3_closed_loop_runs.csv` | Per-run peak pressure, overpressure duration, and valve actuation share |
+| PLC control program | `datasets/extended/grficsv3_plc_program.st` | Structured Text (ST) PLC program for the GRFICSv3 twin |
+| Label-free PPO checkpoints | `models/ppo_detector.zip`, `models/ppo_pressure.zip` | PPO agents trained without attack labels |
+| Episode-disjoint classification | `scripts/benchmarks/grfics_episode_classification.py` | Validation-split and leave-one-episode-out (LOEO) attribution |
+| Multivariate detector baselines | `scripts/benchmarks/swat_wadi_baselines.py` | Common-protocol comparison of PCA, Isolation Forest, LSTM-AE, USAD, TranAD, and GDN on SWaT and WADI |
+| Graph & safety-weight ablations | `scripts/benchmarks/swat_graph_ablation.py` | Graph on/off and $w_s$ sensitivity ablations on SWaT |
+| Conformal & rolling calibration | `scripts/benchmarks/conformal_threshold_calibration.py`, `grfics_conformal_calibration.py` | Split-conformal, Mondrian, and rolling calibration on GRFICSv3 and WADI |
+| Severity routing | `scripts/benchmarks/swat_severity_routing.py` | Incident-level maximum-severity routing on SWaT |
+| Digital-twin campaign runner | `scripts/benchmarks/grfics_twin_campaign.py`, `analyze_twin_campaign.py` | Automated twin episode & closed-loop runner and analyzer |
+| Architecture diagram | `docs/architecture_revised.pdf` | Updated end-to-end pipeline diagram |
+
 ## Known limitations
 
 - On GRFICSv3, each technique was recorded as one attack episode, the classifier is trained and tested on parts of that episode, and XGBoost early stopping monitors the test split. The macro F1 therefore measures recognition within known scenarios.

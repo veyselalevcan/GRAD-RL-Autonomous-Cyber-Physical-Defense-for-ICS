@@ -1,0 +1,90 @@
+{
+ "detector_flags": {
+  "tau_live": "1.2 x P99",
+  "flag_rate_on_normal_rows": 0.007129519606178917,
+  "flag_rate_on_attack_rows": 0.996191282268303
+ },
+ "PPO (paper, label reward)": {
+  "return_paper_reward": [
+   229.5,
+   334.51
+  ],
+  "mean_health": 0.995,
+  "hp_response_%": 99.8,
+  "normal_disruptive_%": 23.6,
+  "attack_steps_valve_%": 0.0,
+  "shutdown_%": 0.0,
+  "vs_threshold_rule_wilcoxon_p": 7.060941721443764e-09
+ },
+ "PPO-pressure": {
+  "return_paper_reward": [
+   229.38,
+   334.2
+  ],
+  "mean_health": 0.996,
+  "hp_response_%": 100.0,
+  "normal_disruptive_%": 23.7,
+  "attack_steps_valve_%": 0.0,
+  "shutdown_%": 0.0,
+  "vs_threshold_rule_wilcoxon_p": 8.196446618009864e-09
+ },
+ "PPO-detector": {
+  "return_paper_reward": [
+   215.22,
+   332.89
+  ],
+  "mean_health": 0.996,
+  "hp_response_%": 100.0,
+  "normal_disruptive_%": 26.3,
+  "attack_steps_valve_%": 0.0,
+  "shutdown_%": 0.0,
+  "vs_threshold_rule_wilcoxon_p": 1.5565414842515754e-08
+ },
+ "Threshold rule": {
+  "return_paper_reward": [
+   4.86,
+   293.07
+  ],
+  "mean_health": 0.841,
+  "hp_response_%": 0.0,
+  "normal_disruptive_%": 5.8,
+  "attack_steps_valve_%": 0.0,
+  "shutdown_%": 0.0
+ },
+ "Always DO_NOTHING": {
+  "return_paper_reward": [
+   37.2,
+   295.05
+  ],
+  "mean_health": 0.921,
+  "hp_response_%": 0.0,
+  "normal_disruptive_%": 0.0,
+  "attack_steps_valve_%": 0.0,
+  "shutdown_%": 0.0,
+  "vs_threshold_rule_wilcoxon_p": 1.07657840660314e-09
+ },
+ "Always OPEN_SAFETY_VALVE": {
+  "return_paper_reward": [
+   -35.44,
+   298.01
+  ],
+  "mean_health": 0.0,
+  "hp_response_%": 100.0,
+  "normal_disruptive_%": 100.0,
+  "attack_steps_valve_%": 100.0,
+  "shutdown_%": 0.0,
+  "vs_threshold_rule_wilcoxon_p": 2.4048077032541483e-06
+ },
+ "Random": {
+  "return_paper_reward": [
+   -9.84,
+   17.86
+  ],
+  "mean_health": 0.0,
+  "hp_response_%": 32.8,
+  "normal_disruptive_%": 66.4,
+  "attack_steps_valve_%": 28.6,
+  "shutdown_%": 33.76,
+  "vs_threshold_rule_wilcoxon_p": 1.938367641445236e-05
+ }
+}

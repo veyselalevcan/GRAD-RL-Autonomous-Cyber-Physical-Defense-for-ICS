@@ -1,0 +1,36 @@
+{
+ "dataset": "WADI",
+ "method": "LSTM-AE",
+ "n_features": 123,
+ "n_train": 76297,
+ "n_test": 17280,
+ "epochs": 20,
+ "train_seconds": 657.3,
+ "val_p99": {
+  "precision": 0.0674,
+  "recall": 0.6554,
+  "f1": 0.1222,
+  "fpr": 0.5634,
+  "attacks_detected": "12/14"
+ },
+ "commissioning_conformal": {
+  "precision": 0.0681,
+  "recall": 0.6673,
+  "f1": 0.1235,
+  "fpr": 0.5854,
+  "n_calibration": 504,
+  "attacks_detected": "12/14"
+ },
+ "oracle_best_f1": {
+  "precision": 0.8477,
+  "recall": 0.1267,
+  "f1": 0.2205,
+  "fpr": 0.0014
+ },
+ "oracle_point_adjusted": {
+  "precision": 0.8777,
+  "recall": 0.1634,
+  "f1": 0.2755,
+  "fpr": 0.0014
+ }
+}

@@ -1,0 +1,440 @@
+{
+ "classes": [
+  "T0813",
+  "T0813+T0836",
+  "T0814",
+  "T0836",
+  "T0856"
+ ],
+ "episodes": [
+  {
+   "episode": "Attack_Combined_Phase1_Setpoint#0",
+   "technique": "T0836",
+   "n": "285",
+   "start": "2026-05-09 19:10:56.475855+00:00",
+   "end": "2026-05-09 19:15:47.021827+00:00"
+  },
+  {
+   "episode": "Attack_Combined_Phase2_DoC_Setpoint#0",
+   "technique": "T0813+T0836",
+   "n": "299",
+   "start": "2026-05-09 19:15:48.023881+00:00",
+   "end": "2026-05-09 19:20:46.593863+00:00"
+  },
+  {
+   "episode": "Attack_DenialOfControl#0",
+   "technique": "T0813",
+   "n": "3",
+   "start": "2026-05-06 19:47:33.265456+00:00",
+   "end": "2026-05-06 19:47:44.321758+00:00"
+  },
+  {
+   "episode": "Attack_DenialOfControl#1",
+   "technique": "T0813",
+   "n": "569",
+   "start": "2026-05-06 20:03:17.519573+00:00",
+   "end": "2026-05-06 20:13:16.604687+00:00"
+  },
+  {
+   "episode": "Attack_ModbusFlood#0",
+   "technique": "T0814",
+   "n": "13",
+   "start": "2026-05-06 20:36:33.237603+00:00",
+   "end": "2026-05-06 20:38:38.355765+00:00"
+  },
+  {
+   "episode": "Attack_ModbusFlood#1",
+   "technique": "T0814",
+   "n": "11",
+   "start": "2026-05-06 20:44:21.420024+00:00",
+   "end": "2026-05-06 20:44:31.434430+00:00"
+  },
+  {
+   "episode": "Attack_SensorSpoofing#0",
+   "technique": "T0856",
+   "n": "587",
+   "start": "2026-05-06 20:23:23.206381+00:00",
+   "end": "2026-05-06 20:33:22.502951+00:00"
+  },
+  {
+   "episode": "Attack_SetpointPoisoning#0",
+   "technique": "T0836",
+   "n": "596",
+   "start": "2026-05-06 20:49:17.251284+00:00",
+   "end": "2026-05-06 20:59:13.431047+00:00"
+  }
+ ],
+ "a_in_episode": {
+  "a0_es_on_test(paper)": {
+   "macro_f1": 0.9970446220446221,
+   "accuracy": 0.9971910112359551,
+   "per_class": {
+    "T0813": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1-score": 1.0,
+     "support": 172.0
+    },
+    "T0813+T0836": {
+     "precision": 0.9783,
+     "recall": 1.0,
+     "f1-score": 0.989,
+     "support": 90.0
+    },
+    "T0814": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1-score": 1.0,
+     "support": 8.0
+    },
+    "T0836": {
+     "precision": 1.0,
+     "recall": 0.9925,
+     "f1-score": 0.9962,
+     "support": 265.0
+    },
+    "T0856": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1-score": 1.0,
+     "support": 177.0
+    }
+   },
+   "best_iteration": 215
+  },
+  "a1_es_on_validation": {
+   "macro_f1": 0.8829797501244396,
+   "accuracy": 0.8609550561797753,
+   "per_class": {
+    "T0813": {
+     "precision": 0.9942,
+     "recall": 1.0,
+     "f1-score": 0.9971,
+     "support": 172.0
+    },
+    "T0813+T0836": {
+     "precision": 0.4787,
+     "recall": 1.0,
+     "f1-score": 0.6475,
+     "support": 90.0
+    },
+    "T0814": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1-score": 1.0,
+     "support": 8.0
+    },
+    "T0836": {
+     "precision": 1.0,
+     "recall": 0.6302,
+     "f1-score": 0.7731,
+     "support": 265.0
+    },
+    "T0856": {
+     "precision": 1.0,
+     "recall": 0.9944,
+     "f1-score": 0.9972,
+     "support": 177.0
+    }
+   },
+   "best_iteration": 253
+  },
+  "a2_no_es_300_trees": {
+   "macro_f1": 0.9970446220446221,
+   "accuracy": 0.9971910112359551,
+   "per_class": {
+    "T0813": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1-score": 1.0,
+     "support": 172.0
+    },
+    "T0813+T0836": {
+     "precision": 0.9783,
+     "recall": 1.0,
+     "f1-score": 0.989,
+     "support": 90.0
+    },
+    "T0814": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1-score": 1.0,
+     "support": 8.0
+    },
+    "T0836": {
+     "precision": 1.0,
+     "recall": 0.9925,
+     "f1-score": 0.9962,
+     "support": 265.0
+    },
+    "T0856": {
+     "precision": 1.0,
+     "recall": 1.0,
+     "f1-score": 1.0,
+     "support": 177.0
+    }
+   }
+  }
+ },
+ "b_leave_one_episode_out": [
+  {
+   "held_out_episode": "Attack_Combined_Phase1_Setpoint#0",
+   "technique": "T0836",
+   "n": 285,
+   "recall": 0.0,
+   "predicted_as": {
+    "T0813+T0836": 285
+   }
+  },
+  {
+   "held_out_episode": "Attack_DenialOfControl#0",
+   "technique": "T0813",
+   "n": 3,
+   "recall": 0.6666666666666666,
+   "predicted_as": {
+    "T0813": 2,
+    "T0814": 1
+   }
+  },
+  {
+   "held_out_episode": "Attack_DenialOfControl#1",
+   "technique": "T0813",
+   "n": 569,
+   "recall": 0.0,
+   "predicted_as": {
+    "T0836": 309,
+    "T0814": 257,
+    "T0856": 3
+   }
+  },
+  {
+   "held_out_episode": "Attack_ModbusFlood#0",
+   "technique": "T0814",
+   "n": 13,
+   "recall": 0.0,
+   "predicted_as": {
+    "T0813": 8,
+    "T0836": 5
+   }
+  },
+  {
+   "held_out_episode": "Attack_ModbusFlood#1",
+   "technique": "T0814",
+   "n": 11,
+   "recall": 0.0,
+   "predicted_as": {
+    "T0813": 11
+   }
+  },
+  {
+   "held_out_episode": "Attack_SetpointPoisoning#0",
+   "technique": "T0836",
+   "n": 596,
+   "recall": 0.0,
+   "predicted_as": {
+    "T0813": 435,
+    "T0814": 161
+   }
+  }
+ ],
+ "c_live_session": {
+  "scenarios": [
+   {
+    "scenario": "T0836",
+    "expected_class": "T0836",
+    "window_s": 128.77,
+    "end_logged": true,
+    "anomalous_events": 205,
+    "predicted": {
+     "T0813+T0836": 205
+    },
+    "mean_conf": 89.8,
+    "attribution_accuracy": 0.0
+   },
+   {
+    "scenario": "T0813",
+    "expected_class": "T0813",
+    "window_s": 129.547,
+    "end_logged": true,
+    "anomalous_events": 201,
+    "predicted": {
+     "T0813+T0836": 201
+    },
+    "mean_conf": 99.9,
+    "attribution_accuracy": 0.0
+   },
+   {
+    "scenario": "T0836_RAMP_UP",
+    "expected_class": "T0836",
+    "window_s": 101.755,
+    "end_logged": true,
+    "anomalous_events": 141,
+    "predicted": {
+     "T0813+T0836": 141
+    },
+    "mean_conf": 86.6,
+    "attribution_accuracy": 0.0
+   },
+   {
+    "scenario": "T0836_ULTRA_SLEY",
+    "expected_class": "T0836",
+    "window_s": 92.168,
+    "end_logged": true,
+    "anomalous_events": 103,
+    "predicted": {
+     "T0836": 66,
+     "T0814": 37
+    },
+    "mean_conf": 61.0,
+    "attribution_accuracy": 0.6408
+   },
+   {
+    "scenario": "T0836_RAMP_DOWN",
+    "expected_class": "T0836",
+    "window_s": 119.132,
+    "end_logged": true,
+    "anomalous_events": 174,
+    "predicted": {
+     "T0813": 174
+    },
+    "mean_conf": 96.8,
+    "attribution_accuracy": 0.0
+   },
+   {
+    "scenario": "T0856",
+    "expected_class": "T0856",
+    "window_s": 112.224,
+    "end_logged": false,
+    "anomalous_events": 0,
+    "predicted": {},
+    "mean_conf": null
+   },
+   {
+    "scenario": "T0814",
+    "expected_class": "T0814",
+    "window_s": 105.092,
+    "end_logged": true,
+    "anomalous_events": 0,
+    "predicted": {},
+    "mean_conf": null
+   },
+   {
+    "scenario": "T0853_PULSE",
+    "expected_class": "out-of-vocabulary",
+    "window_s": 104.721,
+    "end_logged": true,
+    "anomalous_events": 0,
+    "predicted": {},
+    "mean_conf": null
+   },
+   {
+    "scenario": "T0853_PULSE_FLOOD",
+    "expected_class": "out-of-vocabulary",
+    "window_s": 103.891,
+    "end_logged": true,
+    "anomalous_events": 0,
+    "predicted": {},
+    "mean_conf": null
+   },
+   {
+    "scenario": "T0836_MASS_FLOOD",
+    "expected_class": "T0836",
+    "window_s": 94.537,
+    "end_logged": false,
+    "anomalous_events": 0,
+    "predicted": {},
+    "mean_conf": null
+   },
+   {
+    "scenario": "T0836_MASS_RESILIENT",
+    "expected_class": "T0836",
+    "window_s": 100.075,
+    "end_logged": true,
+    "anomalous_events": 25,
+    "predicted": {
+     "T0836": 25
+    },
+    "mean_conf": 52.9,
+    "attribution_accuracy": 1.0
+   },
+   {
+    "scenario": "T0831_INTERLOCK",
+    "expected_class": "out-of-vocabulary",
+    "window_s": 102.695,
+    "end_logged": true,
+    "anomalous_events": 139,
+    "predicted": {
+     "T0814": 127,
+     "T0836": 12
+    },
+    "mean_conf": 86.5
+   },
+   {
+    "scenario": "T0827_CONFLICT",
+    "expected_class": "out-of-vocabulary",
+    "window_s": 84.522,
+    "end_logged": true,
+    "anomalous_events": 104,
+    "predicted": {
+     "T0836": 104
+    },
+    "mean_conf": 84.2
+   },
+   {
+    "scenario": "T0856_SPOOF",
+    "expected_class": "T0856",
+    "window_s": 96.379,
+    "end_logged": true,
+    "anomalous_events": 0,
+    "predicted": {},
+    "mean_conf": null
+   },
+   {
+    "scenario": "T0882_COMBINED",
+    "expected_class": "out-of-vocabulary",
+    "window_s": 117.548,
+    "end_logged": true,
+    "anomalous_events": 160,
+    "predicted": {
+     "T0836": 160
+    },
+    "mean_conf": 88.8
+   },
+   {
+    "scenario": "SWAT_CASCADE_T0827",
+    "expected_class": "out-of-vocabulary",
+    "window_s": 115.558,
+    "end_logged": true,
+    "anomalous_events": 161,
+    "predicted": {
+     "T0836": 161
+    },
+    "mean_conf": 88.9
+   },
+   {
+    "scenario": "UKRAINE_INDUSTROYER",
+    "expected_class": "out-of-vocabulary",
+    "window_s": 78.79,
+    "end_logged": true,
+    "anomalous_events": 109,
+    "predicted": {
+     "T0836": 109
+    },
+    "mean_conf": 97.9
+   },
+   {
+    "scenario": "TRITON_SIS_SABOTAGE",
+    "expected_class": "out-of-vocabulary",
+    "window_s": 116.916,
+    "end_logged": true,
+    "anomalous_events": 160,
+    "predicted": {
+     "T0836": 160
+    },
+    "mean_conf": 89.1
+   }
+  ],
+  "in_vocabulary_event_weighted_accuracy": 0.1072,
+  "in_vocabulary_scenario_majority_correct": "2/6"
+ }
+}

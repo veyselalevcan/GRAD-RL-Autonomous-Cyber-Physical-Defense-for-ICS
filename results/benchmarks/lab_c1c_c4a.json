@@ -1,0 +1,458 @@
+{
+ "rows": {
+  "total": 58313,
+  "read_failures": 15,
+  "read_failures_by_segment": {
+   "c4a|T0813|attack": 3,
+   "c4a|T0813+T0836|attack": 1,
+   "c4a|T0814|recovery": 1,
+   "c4a|T0836|attack": 2,
+   "c4a|T0856|attack": 1,
+   "settle|none|settle": 7
+  }
+ },
+ "c1c_episodes": {
+  "T0813": 6,
+  "T0813+T0836": 6,
+  "T0814": 6,
+  "T0836": 6,
+  "T0856": 6
+ },
+ "c1c_external_validation": {
+  "row_macro_f1": 0.4712,
+  "per_technique": {
+   "T0813": {
+    "row_recall": 0.8206,
+    "predicted_as": {
+     "T0813": 1477,
+     "T0856": 321,
+     "T0814": 2
+    }
+   },
+   "T0813+T0836": {
+    "row_recall": 0.0222,
+    "predicted_as": {
+     "T0813": 1140,
+     "T0856": 618,
+     "T0813+T0836": 40,
+     "T0814": 2
+    }
+   },
+   "T0814": {
+    "row_recall": 0.4528,
+    "predicted_as": {
+     "T0814": 815,
+     "T0856": 600,
+     "T0813+T0836": 300,
+     "T0836": 65,
+     "T0813": 20
+    }
+   },
+   "T0836": {
+    "row_recall": 0.71,
+    "predicted_as": {
+     "T0836": 1278,
+     "T0856": 520,
+     "T0814": 2
+    }
+   },
+   "T0856": {
+    "row_recall": 0.5,
+    "predicted_as": {
+     "T0856": 900,
+     "T0814": 876,
+     "T0813": 13,
+     "T0836": 11
+    }
+   }
+  },
+  "episode_majority_correct": "15/30"
+ },
+ "c1c_leave_one_repetition_out": {
+  "F13": {
+   "row_macro_f1": 0.7304,
+   "per_technique_row_recall": {
+    "T0813": 0.77,
+    "T0813+T0836": 0.6122,
+    "T0814": 0.5572,
+    "T0836": 0.9944,
+    "T0856": 0.7261
+   },
+   "episode_majority_correct": "22/30"
+  },
+  "F13+temporal": {
+   "row_macro_f1": 0.7062,
+   "per_technique_row_recall": {
+    "T0813": 0.685,
+    "T0813+T0836": 0.6194,
+    "T0814": 0.5422,
+    "T0836": 0.9933,
+    "T0856": 0.695
+   },
+   "episode_majority_correct": "21/30"
+  },
+  "F13+temporal+PLC_state": {
+   "row_macro_f1": 0.9834,
+   "per_technique_row_recall": {
+    "T0813": 0.9961,
+    "T0813+T0836": 0.9967,
+    "T0814": 0.9339,
+    "T0836": 0.9939,
+    "T0856": 0.9967
+   },
+   "episode_majority_correct": "30/30"
+  }
+ },
+ "c1c_detection_lstm_ae": {
+  "tau": 0.0032771143130958078,
+  "per_technique": {
+   "T0813": {
+    "episodes_detected": "6/6",
+    "median_delay_s": 0.0,
+    "flagged_row_share": 1.0
+   },
+   "T0813+T0836": {
+    "episodes_detected": "6/6",
+    "median_delay_s": 0.0,
+    "flagged_row_share": 1.0
+   },
+   "T0814": {
+    "episodes_detected": "6/6",
+    "median_delay_s": 0.0,
+    "flagged_row_share": 1.0
+   },
+   "T0836": {
+    "episodes_detected": "6/6",
+    "median_delay_s": 0.0,
+    "flagged_row_share": 1.0
+   },
+   "T0856": {
+    "episodes_detected": "6/6",
+    "median_delay_s": 0.0,
+    "flagged_row_share": 1.0
+   }
+  },
+  "false_alarm_rate_normal_segments": 0.9
+ },
+ "c4a_plc_crashes": {
+  "runs_with_crash": [
+   "9",
+   "15",
+   "18",
+   "23",
+   "28",
+   "35",
+   "38",
+   "1 (at end of post segment)"
+  ],
+  "events": [
+   "2026-11-24T22:26:46 PLC runtime found defunct since about 21:52:50 UTC, right after C4a run 1 (T0814 flood, DO_NOTHING); manual container restart",
+   "2026-11-24T23:55:29 PLC Modbus unreachable 60s, last campaign line: 2026-11-24T23:52:26.939715+00:00 C4a run 9 rep0 T0813 PPO (paper) start",
+   "2026-11-24T23:56:19 PLC restarted, IP 172.18.0.4",
+   "2026-11-25T01:18:48 PLC Modbus unreachable 60s, last campaign line: 2026-11-25T01:16:47.432833+00:00 C4a run 15 rep0 T0813 Threshold rule start",
+   "2026-11-25T01:19:39 PLC restarted, IP 172.18.0.4",
+   "2026-11-25T02:07:41 PLC Modbus unreachable 60s, last campaign line: 2026-11-25T02:04:38.993652+00:00 C4a run 18 rep0 T0836 PPO (paper) start",
+   "2026-11-25T02:08:32 PLC restarted, IP 172.18.0.4",
+   "2026-11-25T03:03:20 PLC Modbus unreachable 60s, last campaign line: 2026-11-25T03:00:15.010218+00:00 C4a run 23 rep1 T0813+T0836 PPO (paper) start",
+   "2026-11-25T03:04:11 PLC restarted, IP 172.18.0.4",
+   "2026-11-25T04:02:14 PLC Modbus unreachable 60s, last campaign line: 2026-11-25T03:59:09.816126+00:00 C4a run 28 rep1 T0836 Threshold rule start",
+   "2026-11-25T04:03:04 PLC restarted, IP 172.18.0.4",
+   "2026-11-25T05:43:49 PLC Modbus unreachable 60s, last campaign line: 2026-11-25T05:40:44.918593+00:00 C4a run 35 rep1 T0813 DO_NOTHING start",
+   "2026-11-25T05:44:39 PLC restarted, IP 172.18.0.4",
+   "2026-11-25T06:30:13 PLC Modbus unreachable 60s, last campaign line: 2026-11-25T06:27:07.606071+00:00 C4a run 38 rep1 T0856 PPO-pressure start",
+   "2026-11-25T06:31:04 PLC restarted, IP 172.18.0.4"
+  ]
+ },
+ "c4a_by_technique_policy": {
+  "T0813 | DO_NOTHING": {
+   "max_pressure_kPa": 2701.2,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 87.3,
+   "level_min": 40.05,
+   "level_max": 43.05,
+   "valve_share_normal_lead": 0.0,
+   "valve_share_attack_post": 0.0,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 646.5
+  },
+  "T0813 | PPO (paper)": {
+   "max_pressure_kPa": 2381.2,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 77.1,
+   "level_min": 40.35,
+   "level_max": 43.1,
+   "valve_share_normal_lead": 0.64,
+   "valve_share_attack_post": 0.07,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 647.0
+  },
+  "T0813 | PPO-pressure": {
+   "max_pressure_kPa": 2701.55,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 86.7,
+   "level_min": 41.0,
+   "level_max": 44.0,
+   "valve_share_normal_lead": 0.0,
+   "valve_share_attack_post": 0.01,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 645.5
+  },
+  "T0813 | Threshold rule": {
+   "max_pressure_kPa": 2694.6,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 86.95,
+   "level_min": 41.1,
+   "level_max": 44.1,
+   "valve_share_normal_lead": 0.02,
+   "valve_share_attack_post": 0.0,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 646.0
+  },
+  "T0813+T0836 | DO_NOTHING": {
+   "max_pressure_kPa": 2697.8,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 87.25,
+   "level_min": 39.3,
+   "level_max": 42.3,
+   "valve_share_normal_lead": 0.0,
+   "valve_share_attack_post": 0.0,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 647.5
+  },
+  "T0813+T0836 | PPO (paper)": {
+   "max_pressure_kPa": 2378.4,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 76.7,
+   "level_min": 40.5,
+   "level_max": 43.25,
+   "valve_share_normal_lead": 0.64,
+   "valve_share_attack_post": 0.07,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 646.5
+  },
+  "T0813+T0836 | PPO-pressure": {
+   "max_pressure_kPa": 2697.05,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 86.8,
+   "level_min": 41.1,
+   "level_max": 44.1,
+   "valve_share_normal_lead": 0.0,
+   "valve_share_attack_post": 0.01,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 645.5
+  },
+  "T0813+T0836 | Threshold rule": {
+   "max_pressure_kPa": 2697.8,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 87.25,
+   "level_min": 39.7,
+   "level_max": 42.7,
+   "valve_share_normal_lead": 0.03,
+   "valve_share_attack_post": 0.0,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 647.5
+  },
+  "T0814 | DO_NOTHING": {
+   "max_pressure_kPa": 2702.2,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 114.9,
+   "level_min": 43.9,
+   "level_max": 44.1,
+   "valve_share_normal_lead": 0.0,
+   "valve_share_attack_post": 0.0,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 126.5
+  },
+  "T0814 | PPO (paper)": {
+   "max_pressure_kPa": 2388.95,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 95.7,
+   "level_min": 43.9,
+   "level_max": 44.1,
+   "valve_share_normal_lead": 0.64,
+   "valve_share_attack_post": 0.27,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 132.0
+  },
+  "T0814 | PPO-pressure": {
+   "max_pressure_kPa": 2702.15,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 118.4,
+   "level_min": 43.9,
+   "level_max": 44.1,
+   "valve_share_normal_lead": 0.0,
+   "valve_share_attack_post": 0.0,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 45.0
+  },
+  "T0814 | Threshold rule": {
+   "max_pressure_kPa": 2702.15,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 118.1,
+   "level_min": 43.9,
+   "level_max": 44.1,
+   "valve_share_normal_lead": 0.03,
+   "valve_share_attack_post": 0.05,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 45.0
+  },
+  "T0836 | DO_NOTHING": {
+   "max_pressure_kPa": 3120.55,
+   "s_above_2900": 354.0,
+   "s_above_3000": 319.0,
+   "mean_product_flow": 225.9,
+   "level_min": 38.65,
+   "level_max": 42.75,
+   "valve_share_normal_lead": 0.0,
+   "valve_share_attack_post": 0.0,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 79.5
+  },
+  "T0836 | PPO (paper)": {
+   "max_pressure_kPa": 2389.75,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 198.25,
+   "level_min": 39.05,
+   "level_max": 44.0,
+   "valve_share_normal_lead": 0.63,
+   "valve_share_attack_post": 0.27,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 135.5
+  },
+  "T0836 | PPO-pressure": {
+   "max_pressure_kPa": 2766.85,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 213.8,
+   "level_min": 39.05,
+   "level_max": 43.55,
+   "valve_share_normal_lead": 0.0,
+   "valve_share_attack_post": 0.21,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 49.0
+  },
+  "T0836 | Threshold rule": {
+   "max_pressure_kPa": 2705.25,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 212.2,
+   "level_min": 38.35,
+   "level_max": 42.95,
+   "valve_share_normal_lead": 0.07,
+   "valve_share_attack_post": 0.23,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 45.0
+  },
+  "T0856 | DO_NOTHING": {
+   "max_pressure_kPa": 2702.2,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 12.75,
+   "level_min": 39.15,
+   "level_max": 43.95,
+   "valve_share_normal_lead": 0.0,
+   "valve_share_attack_post": 0.0,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 45.0
+  },
+  "T0856 | PPO (paper)": {
+   "max_pressure_kPa": 2384.45,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 13.5,
+   "level_min": 39.9,
+   "level_max": 43.7,
+   "valve_share_normal_lead": 0.68,
+   "valve_share_attack_post": 0.27,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 130.5
+  },
+  "T0856 | PPO-pressure": {
+   "max_pressure_kPa": 2702.15,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 118.55,
+   "level_min": 43.9,
+   "level_max": 44.1,
+   "valve_share_normal_lead": 0.0,
+   "valve_share_attack_post": 0.0,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 45.0
+  },
+  "T0856 | Threshold rule": {
+   "max_pressure_kPa": 2702.25,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 117.85,
+   "level_min": 43.9,
+   "level_max": 44.15,
+   "valve_share_normal_lead": 0.05,
+   "valve_share_attack_post": 0.05,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 45.0
+  }
+ },
+ "c4a_by_policy": {
+  "DO_NOTHING": {
+   "max_pressure_kPa": 2784.79,
+   "s_above_2900": 70.8,
+   "s_above_3000": 63.8,
+   "mean_product_flow": 105.62,
+   "level_min": 40.21,
+   "level_max": 43.23,
+   "valve_share_normal_lead": 0.0,
+   "valve_share_attack_post": 0.0,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 309.0
+  },
+  "PPO (paper)": {
+   "max_pressure_kPa": 2384.55,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 92.25,
+   "level_min": 40.74,
+   "level_max": 43.63,
+   "valve_share_normal_lead": 0.65,
+   "valve_share_attack_post": 0.19,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 338.3
+  },
+  "PPO-pressure": {
+   "max_pressure_kPa": 2713.95,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 124.85,
+   "level_min": 41.79,
+   "level_max": 43.97,
+   "valve_share_normal_lead": 0.0,
+   "valve_share_attack_post": 0.05,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 286.0
+  },
+  "Threshold rule": {
+   "max_pressure_kPa": 2700.41,
+   "s_above_2900": 0.0,
+   "s_above_3000": 0.0,
+   "mean_product_flow": 124.47,
+   "level_min": 41.39,
+   "level_max": 43.6,
+   "valve_share_normal_lead": 0.04,
+   "valve_share_attack_post": 0.07,
+   "shutdown_share_attack_post": 0.0,
+   "recovery_s": 285.7
+  }
+ }
+}
